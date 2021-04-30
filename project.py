@@ -17,7 +17,6 @@ def get_article():
 @app.route('/liked-article', methods = ['POST'])
 def liked_article():
     article = all_articles[0]
-    # all_movies = all_movies[1:]
     liked_articles.append(article)
     all_articles.pop(0)
     return jsonify({
@@ -27,7 +26,6 @@ def liked_article():
 @app.route('/not-liked-article', methods = ['POST'])
 def not_liked_article():
     article = all_articles[0]
-    # all_movies = all_movies[1:]
     not_liked_articles.append(article)
     all_articles.pop(0)
     return jsonify({

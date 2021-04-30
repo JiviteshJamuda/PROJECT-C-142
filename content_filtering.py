@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-# from storage import all_articles, liked_articles
 
 df = pd.read_csv('articles.csv')
 df = df[df['title'].notna()]
@@ -24,11 +23,3 @@ def get_recommendation(title, cosine_sim):
   return df['title'].iloc[article_indices]
 
 # get_recommendation(-4029704725707465084, cosine_sim)
-
-# article = all_articles[0]
-# # all_movies = all_movies[1:]
-# liked_articles.append(article)
-# all_articles.pop(0)
-# # print(liked_articles[0][4])
-# output = get_recommendation(int(liked_articles[0][4]), cosine_sim)
-# print(output)
