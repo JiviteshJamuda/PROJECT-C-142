@@ -14,12 +14,12 @@ cosine_sim = cosine_similarity(count_matrix, count_matrix)
 df = df.reset_index()
 indices = pd.Series(df.index, index = df['contentId'])
 
-def get_recommendation(title, cosine_sim):
-  idx = indices[title]
+def get_recommendation(title):
+  idx = indices[int(title)]
   sim_scores = list(enumerate(cosine_sim[idx]))
   sim_scores = sorted(sim_scores, key = lambda x : x[1], reverse=True)
   sim_scores = sim_scores[1:11]
   article_indices = [i [0] for i in sim_scores]
-  return df['title'].iloc[article_indices]
+  return df[['title']].iloc[article_indices].values.tolist()
 
 # get_recommendation(-4029704725707465084, cosine_sim)

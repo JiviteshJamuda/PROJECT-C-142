@@ -9,8 +9,11 @@ app = Flask(__name__)
 
 @app.route('/get-article')
 def get_article():
+    article_data = {
+        'title' : all_articles[0][12]
+    }
     return jsonify({
-        'data'   : all_articles[0],
+        'data'   : article_data,
         'status' : 'success'
     }),200
 
@@ -43,7 +46,7 @@ def popular_article():
             # 'timestamp' : article[2],
             # 'content_id': article[4],
             # 'url'       : article[11],
-            'title'     : article[12],
+            'title'     : article[0],
             # 'text'      : article[13],
             # 'lang'      : article[14],
         }
@@ -58,7 +61,7 @@ def popular_article():
 def recommended_article():
     all_recommended = []
     for liked_article in liked_articles:
-        output = get_recommendation(int(liked_articles[0][4]), cosine_sim)
+        output = get_recommendation(liked_article[4])
 
         for data in output:
             all_recommended.append(data)
@@ -69,9 +72,9 @@ def recommended_article():
 
     article_data = []
     for data in all_recommended:
-        d = { 'data' : all_recommended[0] }
+        d = { 'title' : data[0] }
         article_data.append(d)
-   
+
     return jsonify({
         'data'   : article_data,
         'status' : 'success'
