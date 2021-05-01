@@ -66,9 +66,14 @@ def recommended_article():
     import itertools
     all_recommended.sort()
     all_recommended = list(all_recommended for all_recommended, _ in itertools.groupby(all_recommended))
-    
+
+    article_data = []
+    for data in all_recommended:
+        d = { 'data' : all_recommended[0] }
+        article_data.append(d)
+   
     return jsonify({
-        'data'   : all_recommended,
+        'data'   : article_data,
         'status' : 'success'
     }),200
 
